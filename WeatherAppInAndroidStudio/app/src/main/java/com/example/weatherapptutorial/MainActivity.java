@@ -33,6 +33,8 @@ The onPause method removes location updates.
 package com.example.weatherapptutorial;
 
 import androidx.annotation.NonNull;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     final String APP_ID = "5f472d916ca61ef3232f9c18748b3303";
-    final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?q=Ho%20Chi%20Minh%20City&appid=5f472d916ca61ef3232f9c18748b3303";
+    final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
 
     final long MIN_TIME = 5000;
     final float MIN_DISTANCE = 1000;
@@ -112,19 +114,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Intent mIntent=getIntent();
-        String city= mIntent.getStringExtra("City");
-        if(city!=null)
-        {
+        Intent mIntent = getIntent();
+        String city = mIntent.getStringExtra("City");
+        if(city != null) {
             getWeatherForNewCity(city);
+        } else {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                getWeatherForCurrentLocation();
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+            }
         }
-        else
-        {
-            getWeatherForCurrentLocation();
-        }
-
-
     }
+
 
 
     private void getWeatherForNewCity(String city)
@@ -145,20 +148,21 @@ public class MainActivity extends AppCompatActivity {
         mLocationListner = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+                Log.d("MainActivity", "Location has changed.");
 
                 String Latitude = String.valueOf(location.getLatitude());
                 String Longitude = String.valueOf(location.getLongitude());
 
-                RequestParams params =new RequestParams();
+                Log.d("MainActivity", "New Latitude: " + Latitude);
+                Log.d("MainActivity", "New Longitude: " + Longitude);
+
+                RequestParams params = new RequestParams();
                 params.put("lat" ,Latitude);
                 params.put("lon",Longitude);
                 params.put("appid",APP_ID);
                 letsdoSomeNetworking(params);
-
-
-
-
             }
+
 
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -197,22 +201,17 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-
-        if(requestCode==REQUEST_CODE)
-        {
-            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
-            {
-                Toast.makeText(MainActivity.this,"Locationget Succesffully",Toast.LENGTH_SHORT).show();
+        if(requestCode==REQUEST_CODE) {
+            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(MainActivity.this,"Location permission granted",Toast.LENGTH_SHORT).show();
                 getWeatherForCurrentLocation();
-            }
-            else
-            {
-                //user denied the permission
+            } else {
+                Toast.makeText(MainActivity.this,"Location permission denied",Toast.LENGTH_SHORT).show();
+                // user denied the permission
             }
         }
-
-
     }
+
 
 
 
