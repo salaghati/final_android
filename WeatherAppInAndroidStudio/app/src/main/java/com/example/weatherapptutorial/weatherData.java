@@ -8,6 +8,7 @@ public class weatherData {    // Defining weatherData class
     private String mTemperature,micon,mcity,mWeatherType;    // Declaring string variables
     private int mCondition;    // Declaring integer variable
 
+    private double mWind;    // Declaring double variable
     public static weatherData fromJson(JSONObject jsonObject)    // Declaring static method fromJson
     {
 
@@ -17,6 +18,7 @@ public class weatherData {    // Defining weatherData class
             weatherD.mcity=jsonObject.getString("name");    // Get String value of name from json object
             weatherD.mCondition=jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");    // Get integer value of id from json object
             weatherD.mWeatherType=jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");    // Get String value of main from json object
+            weatherD.mWind=jsonObject.getJSONObject("wind").getDouble("speed"); // Get String value of speed from json object
             weatherD.micon=updateWeatherIcon(weatherD.mCondition);    // Calling method updateWeatherIcon
             double tempResult=jsonObject.getJSONObject("main").getDouble("temp")-273.15;    // Get double value of temp from json object
             int roundedValue=(int)Math.rint(tempResult);    // Round off value of temp
@@ -105,5 +107,9 @@ public class weatherData {    // Defining weatherData class
 
     public String getmWeatherType() {    // Declaring getmWeatherType method
         return mWeatherType;    // Return string value of mWeatherType
+    }
+
+    public double getmWind() {
+        return mWind;
     }
 }
