@@ -32,7 +32,7 @@
             android:id="@+id/go_out"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="Wind"
+            android:text="You Should Go Out"
             android:textColor="@color/white"
             android:textSize="20sp"/>
     </LinearLayout>

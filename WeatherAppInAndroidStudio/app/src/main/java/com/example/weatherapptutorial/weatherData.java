@@ -112,4 +112,8 @@ public class weatherData {    // Defining weatherData class
     public double getmWind() {
         return mWind;
     }
+
+    public int getmCondition() {
+        return mCondition;
+    }
 }

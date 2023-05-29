@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     String Location_Provider = LocationManager.GPS_PROVIDER;
 
-    TextView NameofCity, weatherState, Temperature, Wind;
+    TextView NameofCity, weatherState, Temperature, Wind,suggest;
     ImageView mweatherIcon;
 
     RelativeLayout mCityFinder;
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         mCityFinder = findViewById(R.id.cityFinder);
         NameofCity = findViewById(R.id.cityName);
         Wind = findViewById(R.id.wind_text_view);
+        suggest=findViewById(R.id.go_out);
 
 
 
@@ -254,6 +255,58 @@ public class MainActivity extends AppCompatActivity {
         weatherState.setText(weather.getmWeatherType());
         int resourceID=getResources().getIdentifier(weather.getMicon(),"drawable",getPackageName());
         mweatherIcon.setImageResource(resourceID);
+        int condition = weather.getmCondition();
+        String text = "no suggestions";
+        if(condition>=0 && condition<=300)    // Checking if condition is in range 0 to 300
+        {
+            text = "You shouldn't go out!! It is thunder outside bitch";    // return string value Shouldn't
+        }
+        else if(condition>=300 && condition<=500)    // Checking if condition is in range 300 to 500
+        {
+            text = "Go out but remember to bring a coat!!!!!";   // return string value Go Out
+        }
+        else if(condition>=500 && condition<=600)    // Checking if condition is in range 500 to 600
+        {
+            text = "You shouldn't go out!! It's raining outside ";   // return string value Shouldn't Go Out
+        }
+        else  if(condition>=600 && condition<=700)    // Checking if condition is in range 600 to 700
+        {
+            text = "You shouldn't go out!! It's snow outside ";   // return string value Shouldn't Go Out
+        }
+        else if(condition>=701 && condition<=771)    // Checking if condition is in range 701 to 771
+        {
+            text = "You should go out!!  ";   // return string value Should Go Out
+        }
+
+        else if(condition>=772 && condition<=800)    // Checking if condition is in range 772 to 800
+        {
+            text = "You should go out!!  ";   // return string value Should Go Out
+        }
+        else if(condition==800)    // Checking if condition is 800
+        {
+            text = "You should go out!!  ";   // return string value Should Go Out
+        }
+        else if(condition>=801 && condition<=804)    // Checking if condition is in range 801 to 804
+        {
+            text = "You should go out!!  ";   // return string value Should Go Out
+        }
+        else  if(condition>=900 && condition<=902)    // Checking if condition is in range 900 to 902
+        {
+            text = "You shouldn't go out!! It is thunder outside bitch";    // return string value Shouldn't
+        }
+        if(condition==903)    // Checking if condition is 903
+        {
+            text = "You shouldn't go out!! It's snow outside ";   // return string value Shouldn't Go Out
+        }
+        if(condition==904)    // Checking if condition is 904
+        {
+            text = "You should go out!! It's sunny ";   // return string value Should Go Out
+        }
+        if(condition>=905 && condition<=1000)    // Checking if condition is in range 905 to 1000
+        {
+            text = "You shouldn't go out!! It is thunder outside bitch";    // return string value Shouldn't
+        }
+        suggest.setText(text);
 
 
     }
