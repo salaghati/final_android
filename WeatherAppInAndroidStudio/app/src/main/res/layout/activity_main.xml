@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#242343"
+    android:background="#a9a9a9 "
     tools:context=".MainActivity">
 
 
@@ -26,14 +27,14 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="Wind"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"/>
         <TextView
             android:id="@+id/go_out"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="You Should Go Out"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"/>
     </LinearLayout>
 
@@ -52,7 +53,7 @@
             android:paddingStart="30dp"
             android:textSize="50sp"
             android:textStyle="bold"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:text="0*C">
 
         </TextView>
@@ -64,7 +65,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/weatherCondition"
             android:textSize="30sp"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:text="---------"
             android:paddingStart="30sp">
 
@@ -77,32 +78,32 @@
             android:textSize="40sp"
             android:text="Fetching___"
             android:paddingStart="30sp"
-            android:textColor="#ffffff">
+            android:textColor="#000000">
 
         </TextView>
 
     </LinearLayout>
 
 
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="40dp"
-      android:layout_centerInParent="true"
-      android:layout_marginLeft="30dp"
-      android:layout_marginRight="30dp"
-      android:layout_alignParentBottom="true"
-      android:id="@+id/cityFinder"
-      android:background="@drawable/buttondesign"
-      android:layout_marginBottom="30dp">
+    <RelativeLayout
+        android:id="@+id/cityFinder"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/buttondesign">
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerInParent="true"
-          android:text="FIND CITY"
-          android:textColor="#ffffff"
-          android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="FIND CITY"
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
-  </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
