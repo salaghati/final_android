@@ -1,4 +1,4 @@
-package com.example.weatherapptutorial;    // package name
+package com.example.WeatherApp;    // package name
 
 import androidx.appcompat.app.AppCompatActivity;    // import appcompat activity
 
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;    // import key event
 import android.view.View;    // import view
 import android.widget.EditText;    // import edit text
-import android.widget.ImageButton;    // import image button
 import android.widget.ImageView;    // import image view
 import android.widget.TextView;    // import text view
 

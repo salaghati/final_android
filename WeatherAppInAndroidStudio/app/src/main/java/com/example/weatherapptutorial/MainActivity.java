@@ -1,3 +1,35 @@
+/*
+This code makes a weather app.
+The code starts by importing the necessary packages.
+The code then defines a main class.
+The code then defines a few constants.
+The code then defines a few variables.
+The code then overrides the onCreate method.
+The onCreate method sets the view and initializes the variables.
+The onCreate method then sets an onClickListener to the mCityFinder variable.
+The code then overrides the onResume method.
+The onResume method checks if there is any city variable that was passed in the intent.
+If there is, the getWeatherForNewCity method is called.
+If there isn't, the getWeatherForCurrentLocation method is called.
+The code then creates a getWeatherForNewCity method.
+The getWeatherForNewCity method creates a RequestParams variable and sets the q parameter to the city variable.
+The getWeatherForNewCity method then calls the letsdoSomeNetworking method.
+The code then creates a getWeatherForCurrentLocation method.
+The getWeatherForCurrentLocation method creates a LocationManager and LocationListener variable.
+The getWeatherForCurrentLocation method then checks for permissions.
+The getWeatherForCurrentLocation method then requests location updates.
+The code then overrides the onRequestPermissionsResult method.
+The onRequestPermissionsResult method grants permissions if the request code equals the REQUEST_CODE constant.
+The code then creates a letsdoSomeNetworking method.
+The letsdoSomeNetworking method creates an AsyncHttpClient and calls the get method.
+The letsdoSomeNetworking method then shows a toast if the data has been received.
+The letsdoSomeNetworking method then updates the UI.
+The letsdoSomeNetworking method then shows a toast if the data could not be received.
+The code then creates an updateUI method.
+The updateUI method sets the text and image of the variables to match the current weather.
+The code then overrides the onPause method.
+The onPause method removes location updates.
+*/
 package com.example.weatherapptutorial;
 
 import androidx.annotation.NonNull;
@@ -198,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
                 updateUI(weatherD);
 
 
-               // super.onSuccess(statusCode, headers, response);
+                // super.onSuccess(statusCode, headers, response);
             }
 
 

@@ -1,37 +1,39 @@
-package com.example.weatherapptutorial;    // Package declaration
+package com.example.WeatherApp;    // Khai báo package
 
-import org.json.JSONException;    // Import json exception
-import org.json.JSONObject;    // Import json object
+import org.json.JSONException;    // Nhập lớp JSONException để xử lý các ngoại lệ liên quan đến JSON
+import org.json.JSONObject;    // Nhập lớp JSONObject để xử lý đối tượng JSON
 
-public class weatherData {    // Defining weatherData class
+public class weatherData {    // Khai báo class weatherData
 
-    private String mTemperature,micon,mcity,mWeatherType;    // Declaring string variables
-    private int mCondition;    // Declaring integer variable
+    // Khai báo các thuộc tính của lớp
+    private String mTemperature,micon,mcity,mWeatherType;
+    private int mCondition;
+    private double mWind;
 
-    public static weatherData fromJson(JSONObject jsonObject)    // Declaring static method fromJson
+    // Phương thức static từ JSON cho phép ta chuyển đổi JSONObject thành một đối tượng weatherData
+    public static weatherData fromJson(JSONObject jsonObject)
     {
-
-        try    // Try block
+        try
         {
-            weatherData weatherD=new weatherData();    // Defining object of weatherData class
-            weatherD.mcity=jsonObject.getString("name");    // Get String value of name from json object
-            weatherD.mCondition=jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");    // Get integer value of id from json object
-            weatherD.mWeatherType=jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");    // Get String value of main from json object
-            weatherD.micon=updateWeatherIcon(weatherD.mCondition);    // Calling method updateWeatherIcon
-            double tempResult=jsonObject.getJSONObject("main").getDouble("temp")-273.15;    // Get double value of temp from json object
-            int roundedValue=(int)Math.rint(tempResult);    // Round off value of temp
-            weatherD.mTemperature=Integer.toString(roundedValue);    // Convert integer variable to string
-            return weatherD;    // return weatherD object
+            weatherData weatherD=new weatherData();    // Tạo một đối tượng weatherData mới
+            weatherD.mcity=jsonObject.getString("name");    // Lấy tên thành phố từ JSONObject
+            weatherD.mCondition=jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");    // Lấy ID điều kiện thời tiết từ JSONObject
+            weatherD.mWeatherType=jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");    // Lấy loại thời tiết từ JSONObject
+            weatherD.mWind=jsonObject.getJSONObject("wind").getDouble("speed"); // Lấy tốc độ gió từ JSONObject
+            weatherD.micon=updateWeatherIcon(weatherD.mCondition);    // Cập nhật icon thời tiết dựa trên ID điều kiện thời tiết
+            double tempResult=jsonObject.getJSONObject("main").getDouble("temp")-273.15;    // Lấy nhiệt độ từ JSONObject và chuyển đổi từ Kelvin sang Celsius
+            int roundedValue=(int)Math.rint(tempResult);    // Làm tròn nhiệt độ
+            weatherD.mTemperature=Integer.toString(roundedValue);    // Chuyển nhiệt độ thành chuỗi
+            return weatherD;    // Trả về đối tượng weatherData
         }
 
-
-        catch (JSONException e) {    // catch block
-            e.printStackTrace();    // Print stack trace
-            return null;    // return null
+        // Xử lý ngoại lệ JSONException
+        catch (JSONException e) {
+            e.printStackTrace();
+            return null;
         }
-
-
     }
+
 
 
     private static String updateWeatherIcon(int condition)    // Declaring static method updateWeatherIcon
@@ -105,5 +107,13 @@ public class weatherData {    // Defining weatherData class
 
     public String getmWeatherType() {    // Declaring getmWeatherType method
         return mWeatherType;    // Return string value of mWeatherType
+    }
+
+    public double getmWind() {
+        return mWind;
+    }
+
+    public int getmCondition() {
+        return mCondition;
     }
 }
