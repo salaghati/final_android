@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#a9a9a9"
+    android:background="@drawable/city_finder"
     tools:context=".cityFinder">
 
     <ImageView
