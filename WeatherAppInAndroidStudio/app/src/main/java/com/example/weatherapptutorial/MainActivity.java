@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         RequestParams params=new RequestParams();
         params.put("q",city);
         params.put("appid",APP_ID);
-        letsdoSomeNetworking(params);
+        letsdoSomeNetworking(params)
 
     }
 
