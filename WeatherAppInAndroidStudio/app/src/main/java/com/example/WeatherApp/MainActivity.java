@@ -57,6 +57,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 import androidx.core.content.ContextCompat;
+import android.graphics.drawable.Drawable;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -248,21 +249,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private int getBackgroundColor(int condition) {
-        if(condition >= 0 && condition <= 300) {
-            return R.color.colorThunder;
-        } else if(condition >= 300 && condition <= 500) {
-            return R.color.colorRainy;
-        } else if(condition >= 500 && condition <= 600) {
-            return R.color.colorRainy;
-        } else if(condition >= 600 && condition <= 700) {
-            return R.color.colorCloudy;
-        } else if(condition >= 701 && condition <= 800) {
-            return R.color.colorSunny;
+    private int getBackgroundImage(int condition) {
+        if((condition >= 0 && condition <= 300) || (condition >= 900 && condition <= 902) || (condition >= 905 && condition <= 1000)) {
+            return R.drawable.thunderstormforbackground;
+        } else if((condition >= 300 && condition <= 600)) {
+            return R.drawable.lightrainforbackground;
+        } else if((condition >= 600 && condition <= 700) || (condition == 903)) {
+            return R.drawable.cloudyforbackground;
         } else {
-            return R.color.colorCloudy;
+            return R.drawable.sunnyforbackground;
         }
     }
+
 
 
     private  void updateUI(weatherData weather){
@@ -277,10 +275,11 @@ public class MainActivity extends AppCompatActivity {
         String text = "no suggestions";
         RelativeLayout mainLayout = (RelativeLayout) findViewById(R.id.main_layout);
         // change background color
-        mainLayout.setBackgroundColor(ContextCompat.getColor(this, getBackgroundColor(weather.getmCondition())));
+        Drawable backgroundImage = ContextCompat.getDrawable(this, getBackgroundImage(weather.getmCondition()));
+        mainLayout.setBackground(backgroundImage);
         if(condition>=0 && condition<=300)    // Checking if condition is in range 0 to 300
         {
-            text = "You shouldn't go out!! It is thunder outside bitch";    // return string value Shouldn't
+            text = "You shouldn't go out!! It is thunder outside ";    // return string value Shouldn't
         }
         else if(condition>=300 && condition<=500)    // Checking if condition is in range 300 to 500
         {
@@ -288,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(condition>=500 && condition<=600)    // Checking if condition is in range 500 to 600
         {
-            text = "You shouldn't go out!! It's raining outside ";   // return string value Shouldn't Go Out
+            text = "You shouldn't go out!! It's shower outside ";   // return string value Shouldn't Go Out
         }
         else  if(condition>=600 && condition<=700)    // Checking if condition is in range 600 to 700
         {
@@ -296,24 +295,24 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(condition>=701 && condition<=771)    // Checking if condition is in range 701 to 771
         {
-            text = "You should go out!!  ";   // return string value Should Go Out
+            text = "You should go out!! But it have fog outside,be careful  ";   // return string value Should Go Out
         }
 
         else if(condition>=772 && condition<=800)    // Checking if condition is in range 772 to 800
         {
-            text = "You should go out!!  ";   // return string value Should Go Out
+            text = "You should go out!! It overcast  ";   // return string value Should Go Out
         }
         else if(condition==800)    // Checking if condition is 800
         {
-            text = "You should go out!!  ";   // return string value Should Go Out
+            text = "You should go out!! It's sunny outside  ";   // return string value Should Go Out
         }
         else if(condition>=801 && condition<=804)    // Checking if condition is in range 801 to 804
         {
-            text = "You should go out!!  ";   // return string value Should Go Out
+            text = "You should go out!! It just cloudy  ";   // return string value Should Go Out
         }
         else  if(condition>=900 && condition<=902)    // Checking if condition is in range 900 to 902
         {
-            text = "You shouldn't go out!! It is thunder outside bitch";    // return string value Shouldn't
+            text = "You shouldn't go out!! It is thunder outside ";    // return string value Shouldn't
         }
         if(condition==903)    // Checking if condition is 903
         {
@@ -321,11 +320,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if(condition==904)    // Checking if condition is 904
         {
-            text = "You should go out!! It's sunny ";   // return string value Should Go Out
+            text = "You should go out!! It's sunny outside ";   // return string value Should Go Out
         }
         if(condition>=905 && condition<=1000)    // Checking if condition is in range 905 to 1000
         {
-            text = "You shouldn't go out!! It is thunder outside bitch";    // return string value Shouldn't
+            text = "You shouldn't go out!! It is thunder outside ";    // return string value Shouldn't
         }
         suggest.setText(text);
 

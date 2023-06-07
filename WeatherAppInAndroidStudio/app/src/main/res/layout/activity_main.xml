@@ -22,18 +22,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/weatherIcon"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/wind_text_view"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="Wind"
+            android:paddingStart="30dp"
+
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/go_out"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="You Should Go Out"
+            android:paddingStart="30dp"
+
             android:textColor="@color/black"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -101,7 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="FIND CITY"
-            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
             android:textSize="16sp" />
 
     </RelativeLayout>
