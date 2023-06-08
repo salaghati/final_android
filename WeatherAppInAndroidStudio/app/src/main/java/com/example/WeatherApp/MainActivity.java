@@ -283,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(condition>=300 && condition<=500)    // Checking if condition is in range 300 to 500
         {
-            text = "Go out but remember to bring a coat!!!!!";   // return string value Go Out
+            text = "Go out but bring a coat!!!!!";   // return string value Go Out
         }
         else if(condition>=500 && condition<=600)    // Checking if condition is in range 500 to 600
         {
